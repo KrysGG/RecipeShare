@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RecipeShare</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style type="text/tailwindcss">
+        @layer components {
+    .input { @apply w-full rounded-2xl border border-slate-300 px-4 py-3 mb-3 outline-none focus:ring-2 focus:ring-blue-500; }
+    .btn-primary { @apply px-4 py-2 rounded-xl bg-blue-600 text-white hover:bg-blue-700 transition; }
+    .btn-secondary { @apply px-4 py-2 rounded-xl border border-slate-300 bg-white hover:bg-slate-100 transition; }
+}
+</style>
+</head>
+
+<body class="bg-slate-50 text-slate-900">
+    <header class="sticky top-0 z-20 bg-white/90 backdrop-blur border-b border-slate-200">
+        <nav class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+            <div>
+                <h1 class="text-2xl font-bold tracking-tight text-blue-700">RecipeShare</h1>
+                <p class="text-xs text-slate-500">Red social simple de recetas</p>
+            </div>
+            <div class="flex items-center gap-2">
+                <button id="btnShowLogin"
+                    class="px-4 py-2 rounded-xl border border-slate-300 hover:bg-slate-100">Login</button>
+                <button id="btnShowRegister"
+                    class="px-4 py-2 rounded-xl bg-blue-600 text-white hover:bg-blue-700">Registro</button>
+                <button id="btnLogout" class="hidden px-4 py-2 rounded-xl bg-slate-900 text-white">Salir</button>
+            </div>
+        </nav>
+    </header>
+    <main class="max-w-6xl mx-auto px-4 py-8">
+        <section class="rounded-3xl bg-gradient-to-br from-blue-700 to-slate-900 text-white p-8 mb-8 shadow-lg">
+            <h2 class="text-3xl md:text-5xl font-bold mb-3">Comparte recetas simples y favoritas.</h2>
+            <p class="text-blue-100 max-w-2xl">Explora recetas publicadas por la comunidad. Para publicar, votar o
+                guardar favoritas, inicia sesion.</p>
+        </section>
+        <section id="messageBox" class="hidden mb-6 rounded-2xl p-4 text-sm"></section>
+        <section class="grid md:grid-cols-2 gap-6 mb-8">
+            <form id="loginForm" class="hidden bg-white rounded-3xl p-6 shadow-sm border border-slate-200">
+                <h3 class="text-xl font-bold mb-4">Iniciar sesion</h3>
+                <input name="email" class="input" placeholder="Email" />
+                <input name="password" type="password" class="input" placeholder="Password" />
+                <button class="btn-primary w-full">Entrar</button>
+            </form>
+            <form id="registerForm" class="hidden bg-white rounded-3xl p-6 shadow-sm border border-slate-200">
+                <h3 class="text-xl font-bold mb-4">Crear cuenta</h3>
+                <input name="name" class="input" placeholder="Nombre" />
+                <input name="email" class="input" placeholder="Email" />
+                <input name="password" type="password" class="input" placeholder="Password" />
+                <button class="btn-primary w-full">Registrarme</button>
+            </form>
+        </section>
+        <section id="recipeFormSection" class="hidden bg-white rounded-3xl p-6 shadow-sm border border-slate-200 mb-8">
+            <h3 id="recipeFormTitle" class="text-xl font-bold mb-4">Publicar receta</h3>
+            <form id="recipeForm" class="grid gap-4">
+                <input type="hidden" name="id" />
+                <input name="title" class="input" placeholder="Titulo de la receta" />
+                <input name="description" class="input" placeholder="Descripcion breve" />
+                <textarea name="ingredients" class="input min-h-28" placeholder="Ingredientes"></textarea>
+                <textarea name="steps" class="input min-h-28" placeholder="Pasos a seguir"></textarea>
+                <input name="prep_minutes" type="number" class="input" placeholder="Tiempo aproximado en minutos" />
+                <div class="flex gap-2">
+                    <button class="btn-primary">Guardar receta</button>
+                    <button type="button" id="btnCancelEdit" class="btn-secondary">Cancelar</button>
+                </div>
+            </form>
+        </section>
+        <section class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+            <div>
+                <h3 class="text-2xl font-bold">Recetas publicadas</h3>
+                <p class="text-slate-500">Ordena por fecha o por cantidad de likes.</p>
+            </div>
+            <div class="flex gap-2">
+                <button data-sort="recent" class="sortBtn btn-secondary">Mas recientes</button>
+                <button data-sort="likes" class="sortBtn btn-secondary">Mas likes</button>
+                <button id="btnNewRecipe" class="hidden btn-primary">Nueva receta</button>
+            </div>
+        </section>
+        <section id="recipesGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></section>
+    </main>
+    <script src="/static/app.js"></script>
+</body>
+
+</html>
