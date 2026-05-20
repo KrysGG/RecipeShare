@@ -4,7 +4,7 @@ from mysql.connector import Error
 DB_CONFIG = {
     "host": "localhost",
     "user": "root",
-    "password": "",  # Asegúrate de que coincida con tu XAMPP
+    "password": "",
     "database": "recipeshare_db"
 }
 

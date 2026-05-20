@@ -103,7 +103,7 @@ def logout():
 def me():
     return success({"id": session["user_id"], "name": session["user_name"]})
 
-# --- Endpoints de Recetas ---
+# ---Endpoints de Recetas---
 
 
 def validate_recipe_payload(data):
@@ -206,7 +206,7 @@ def update_recipe(recipe_id):
         return error("No se encontro la receta o no tiene permiso para editarla.", 404)
     return success(message="Receta actualizada.")
 
-# --- Endpoints de Favoritos y Likes ---
+# --- Endpoints de Likes ---
 
 
 @app.post("/api/recipes/<int:recipe_id>/like")
